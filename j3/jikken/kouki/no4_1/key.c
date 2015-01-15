@@ -41,7 +41,7 @@ void key_init(void)
 	/* キーバッファのクリア */
 	for (i = 0; i < KEYBUFSIZE; i++){
 		for (j = 0; j < KEYROWNUM; j++){
-			/* ここで何もキーが押されていない状態にバッファ(keybufdp)を初期化 */
+			/* ここで何もキーが押されていない状態にバッファ(keybuf)を初期化 */
 			/* キーが押されていないときにビットが1となることに注意すること */
 			keybuf[i][j] = 0x07;
 		}
@@ -66,23 +66,26 @@ void key_sense(void)
 	/* 　・PA0〜PA3だけを書き換えるように注意すること(他のビットの変化禁止) */
 	/* 　・P60〜P62だけを読むように注意すること(他のビットは0にする) */
 
-	/*
+	/*今回使われているのはkey*0#だけ
 	//key 1,2,3
-	PADR |= 0x07; // PA3 = L
+	PADR |= 0x07;
+	PADR &= 0xf7;
 	keybuf[keybufdp][0] = P6DR & 0x07;
 
 	//key 4,5,6
 	PADR |= 0x0b;
+	PADR &= 0xfb;
 	keybuf[keybufdp][1] = P6DR & 0x07;
 
 	//key 7,8,9
-	PADR |= 0x0b;
+	PADR |= 0x0d;
+	PADR &= 0xfd;
 	keybuf[keybufdp][2] = P6DR & 0x07;
-	*/  
+	*/
 
 	//key *,0,#
 	PADR |= 0x0e;
-	PADR &= ~0x01;
+	PADR &= 0xfe;
 	keybuf[keybufdp][3] = P6DR & 0x07;
 }
 
@@ -111,7 +114,6 @@ int key_check(int keynum)
 		/* 　・リングバッファのつなぎ目の処理を忘れないこと */
 		/* 　・途中でキースキャン割り込みが生じても矛盾しない処理を行うこと */
 		/* 指定キーが全てONならKEYON、全てOFFならKEYOFF、それ以外はKEYTRANS とする*/
-		int i;
 		int temp = keybufdp;
 
 		if(keybuf[temp][row] & (1 << pos)){
@@ -120,9 +122,10 @@ int key_check(int keynum)
 			r = KEYON;
 		}
 
+		int i;
 		for(i = 0; i < KEYCHKCOUNT-1; i++){
 			if((keybuf[(temp+i)%KEYBUFSIZE][row] & (1 << pos)) ^ 
-					(keybuf[(temp+1+i)%KEYBUFSIZE][row] & (1 << pos))){
+					(keybuf[(temp+i+1)%KEYBUFSIZE][row] & (1 << pos))){
 				r = KEYTRANS;
 				break;
 			}
