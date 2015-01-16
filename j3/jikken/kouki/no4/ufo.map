@@ -1,0 +1,200 @@
+Archive member included because of file (symbol)
+
+/home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/h8300h/int32/libgcc.a(_divsi3.o)
+                              ufo.o (___modsi3)
+/home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/h8300h/int32/libgcc.a(_mulsi3.o)
+                              timer.o (___mulsi3)
+
+Allocating common symbols
+Common symbol       size              file
+
+timer0_count        0x4               sound.o
+shift_flag          0x4               ufo.o
+play_count          0x4               sound.o
+keybufdp            0x4               key.o
+n_time              0x4               ufo.o
+speed               0x4               ufo.o
+speed_count         0x4               ufo.o
+keybuf              0x28              key.o
+da_amp              0x1               sound.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+vectors          0x00ffe000         0x00000400
+ram              0x00200000         0x00020000
+
+Linker script and memory map
+
+LOAD /home/class/common/H8/lib/ramcrt-ext.o
+LOAD ufo.o
+LOAD lcd.o
+LOAD timer.o
+LOAD key.o
+LOAD sound.o
+LOAD da.o
+LOAD random.o
+LOAD /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/h8300h/int32/libgcc.a
+LOAD /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/../../../../h8300-hms/lib/h8300h/int32/libg.a
+LOAD /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/../../../../h8300-hms/lib/h8300h/int32/libc.a
+LOAD /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/h8300h/int32/libgcc.a
+                0x00ffff10                PROVIDE (_stack, 0xffff10)
+                0x00220000                PROVIDE (__ext_stack, 0x220000)
+
+.vectors        0x00ffe000      0x100
+                0x00ffe000        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe004        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe008        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe00c        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe010        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe014        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe018        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe01c        0x4 LONG 0x200000 DEFINED (_int_nmi)?<code 340> (_int_nmi):<code 340> (_start)
+                0x00ffe020        0x4 LONG 0x200000 DEFINED (_int_trap0)?<code 340> (_int_trap0):<code 340> (_start)
+                0x00ffe024        0x4 LONG 0x200000 DEFINED (_int_trap1)?<code 340> (_int_trap1):<code 340> (_start)
+                0x00ffe028        0x4 LONG 0x200000 DEFINED (_int_trap2)?<code 340> (_int_trap2):<code 340> (_start)
+                0x00ffe02c        0x4 LONG 0x200000 DEFINED (_int_trap3)?<code 340> (_int_trap3):<code 340> (_start)
+                0x00ffe030        0x4 LONG 0x200000 DEFINED (_int_irq0)?<code 340> (_int_irq0):<code 340> (_start)
+                0x00ffe034        0x4 LONG 0x200000 DEFINED (_int_irq1)?<code 340> (_int_irq1):<code 340> (_start)
+                0x00ffe038        0x4 LONG 0x200000 DEFINED (_int_irq2)?<code 340> (_int_irq2):<code 340> (_start)
+                0x00ffe03c        0x4 LONG 0x200000 DEFINED (_int_irq3)?<code 340> (_int_irq3):<code 340> (_start)
+                0x00ffe040        0x4 LONG 0x200000 DEFINED (_int_irq4)?<code 340> (_int_irq4):<code 340> (_start)
+                0x00ffe044        0x4 LONG 0x200000 DEFINED (_int_irq5)?<code 340> (_int_irq5):<code 340> (_start)
+                0x00ffe048        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe04c        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe050        0x4 LONG 0x200000 DEFINED (_int_wovi)?<code 340> (_int_wovi):<code 340> (_start)
+                0x00ffe054        0x4 LONG 0x200000 DEFINED (_int_cmi)?<code 340> (_int_cmi):<code 340> (_start)
+                0x00ffe058        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe05c        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe060        0x4 LONG 0x200e76 DEFINED (_int_imia0)?<code 340> (_int_imia0):<code 340> (_start)
+                0x00ffe064        0x4 LONG 0x200000 DEFINED (_int_imib0)?<code 340> (_int_imib0):<code 340> (_start)
+                0x00ffe068        0x4 LONG 0x200000 DEFINED (_int_ovi0)?<code 340> (_int_ovi0):<code 340> (_start)
+                0x00ffe06c        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe070        0x4 LONG 0x200642 DEFINED (_int_imia1)?<code 340> (_int_imia1):<code 340> (_start)
+                0x00ffe074        0x4 LONG 0x200000 DEFINED (_int_imib1)?<code 340> (_int_imib1):<code 340> (_start)
+                0x00ffe078        0x4 LONG 0x200000 DEFINED (_int_ovi1)?<code 340> (_int_ovi1):<code 340> (_start)
+                0x00ffe07c        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe080        0x4 LONG 0x200000 DEFINED (_int_imia2)?<code 340> (_int_imia2):<code 340> (_start)
+                0x00ffe084        0x4 LONG 0x200000 DEFINED (_int_imib2)?<code 340> (_int_imib2):<code 340> (_start)
+                0x00ffe088        0x4 LONG 0x200000 DEFINED (_int_ovi2)?<code 340> (_int_ovi2):<code 340> (_start)
+                0x00ffe08c        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe090        0x4 LONG 0x200000 DEFINED (_int_imia3)?<code 340> (_int_imia3):<code 340> (_start)
+                0x00ffe094        0x4 LONG 0x200000 DEFINED (_int_imib3)?<code 340> (_int_imib3):<code 340> (_start)
+                0x00ffe098        0x4 LONG 0x200000 DEFINED (_int_ovi3)?<code 340> (_int_ovi3):<code 340> (_start)
+                0x00ffe09c        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe0a0        0x4 LONG 0x200000 DEFINED (_int_imia4)?<code 340> (_int_imia4):<code 340> (_start)
+                0x00ffe0a4        0x4 LONG 0x200000 DEFINED (_int_imib4)?<code 340> (_int_imib4):<code 340> (_start)
+                0x00ffe0a8        0x4 LONG 0x200000 DEFINED (_int_ovi4)?<code 340> (_int_ovi4):<code 340> (_start)
+                0x00ffe0ac        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe0b0        0x4 LONG 0x200000 DEFINED (_int_dend0a)?<code 340> (_int_dend0a):<code 340> (_start)
+                0x00ffe0b4        0x4 LONG 0x200000 DEFINED (_int_dend0b)?<code 340> (_int_dend0b):<code 340> (_start)
+                0x00ffe0b8        0x4 LONG 0x200000 DEFINED (_int_dend1a)?<code 340> (_int_dend1a):<code 340> (_start)
+                0x00ffe0bc        0x4 LONG 0x200000 DEFINED (_int_dend1b)?<code 340> (_int_dend1b):<code 340> (_start)
+                0x00ffe0c0        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe0c4        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe0c8        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe0cc        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe0d0        0x4 LONG 0x200000 DEFINED (_int_eri0)?<code 340> (_int_eri0):<code 340> (_start)
+                0x00ffe0d4        0x4 LONG 0x200000 DEFINED (_int_rxi0)?<code 340> (_int_rxi0):<code 340> (_start)
+                0x00ffe0d8        0x4 LONG 0x200000 DEFINED (_int_txi0)?<code 340> (_int_txi0):<code 340> (_start)
+                0x00ffe0dc        0x4 LONG 0x200000 DEFINED (_int_tei0)?<code 340> (_int_tei0):<code 340> (_start)
+                0x00ffe0e0        0x4 LONG 0x200000 DEFINED (_int_eri1)?<code 340> (_int_eri1):<code 340> (_start)
+                0x00ffe0e4        0x4 LONG 0x200000 DEFINED (_int_rxi1)?<code 340> (_int_rxi1):<code 340> (_start)
+                0x00ffe0e8        0x4 LONG 0x200000 DEFINED (_int_txi1)?<code 340> (_int_txi1):<code 340> (_start)
+                0x00ffe0ec        0x4 LONG 0x200000 DEFINED (_int_tei1)?<code 340> (_int_tei1):<code 340> (_start)
+                0x00ffe0f0        0x4 LONG 0x200000 DEFINED (_int_adi)?<code 340> (_int_adi):<code 340> (_start)
+                0x00ffe0f4        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe0f8        0x4 LONG 0x200000 <code 340> (_start)
+                0x00ffe0fc        0x4 LONG 0x200000 <code 340> (_start)
+
+.text           0x00200000     0x10d6
+                0x00200000                __text_start = .
+ *(.text)
+ .text          0x00200000       0x3c /home/class/common/H8/lib/ramcrt-ext.o
+                                 0x70 (size before relaxing)
+                0x00200000                _start
+ .text          0x0020003c      0x6a6 ufo.o
+                                0x6ac (size before relaxing)
+                0x00200642                _int_imia1
+                0x002002e4                _game_start
+                0x00200228                _ntos
+                0x002005ea                _effect
+                0x0020003c                _main
+ .text          0x002006e2      0x1a2 lcd.o
+                                0x1aa (size before relaxing)
+                0x002006e2                _lcd_init
+                0x0020085c                _wait1ms
+                0x002007d8                _lcd_printstr
+                0x00200814                _lcd_printch
+                0x0020076e                _lcd_cursor
+                0x002007be                _lcd_clear
+                0x00200824                _lcd_putch
+ .text          0x00200884      0x3da timer.o
+                0x00200884                _timer_set
+                0x00200b54                _timer_init
+                0x00200afe                _timer_start
+                0x00200b28                _timer_stop
+                0x00200bbc                _timer_pri_set
+                0x00200b72                _timer_intflag_reset
+ .text          0x00200c5e      0x1f6 key.o
+                0x00200c5e                _key_init
+                0x00200cae                _key_sense
+                0x00200cfa                _key_check
+ .text          0x00200e54       0x2e sound.o
+                                 0x30 (size before relaxing)
+                0x00200e76                _int_imia0
+                0x00200e54                _sound_init
+                0x00200e6a                _sound_beep
+ .text          0x00200e82       0x80 da.o
+                0x00200ea6                _da_out
+                0x00200ee2                _speaker_switch
+                0x00200ec6                _da_stop
+                0x00200e82                _da_init
+ .text          0x00200f02       0x58 random.o
+                0x00200f1a                _random
+                0x00200f02                _random_init
+ .text          0x00200f5a       0xc4 /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/h8300h/int32/libgcc.a(_divsi3.o)
+                                 0xc8 (size before relaxing)
+                0x00200fa6                ___umodsi3
+                0x00200fba                ___divsi3
+                0x00200f80                ___modsi3
+                0x00200f94                ___udivsi3
+ .text          0x0020101e       0x18 /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/h8300h/int32/libgcc.a(_mulsi3.o)
+                0x0020101e                ___mulsi3
+ *(.rodata)
+ .rodata        0x00201036       0x78 ufo.o
+ .rodata        0x002010ae       0x28 timer.o
+ *(.strings)
+                0x002010d6                __text_end = .
+
+.tors           0x002010d6        0x0
+                0x002010d6                ___ctors = .
+ *(.ctors)
+                0x002010d6                ___ctors_end = .
+                0x002010d6                ___dtors = .
+ *(.dtors)
+                0x002010d6                ___dtors_end = .
+
+.data           0x002010d6        0x0
+                0x002010d6                __data_start = .
+ *(.data)
+                0x002010d6                __edata = .
+
+.bss            0x002010e0       0x51
+                0x002010e0                __bss_start = .
+ *(.bss)
+ *(COMMON)
+ COMMON         0x002010e0       0x10 ufo.o
+                0x002010e0                _shift_flag
+                0x002010e4                _n_time
+                0x002010e8                _speed
+                0x002010ec                _speed_count
+ COMMON         0x002010f0       0x38 key.o
+                0x002010f0                _keybufdp
+                0x00201100                _keybuf
+ COMMON         0x00201128        0x9 sound.o
+                0x00201128                _timer0_count
+                0x0020112c                _play_count
+                0x00201130                _da_amp
+                0x00201131                __bss_end = .
+OUTPUT(ufo.coff coff-h8300)
