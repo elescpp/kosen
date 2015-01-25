@@ -10,7 +10,7 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="1300"
-   height="900"
+   height="1000"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
@@ -28,7 +28,7 @@
      inkscape:cx="447.43606"
      inkscape:cy="442.09209"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g4440"
      showgrid="true"
      inkscape:snap-grids="false"
      inkscape:window-width="1920"
@@ -60,7 +60,7 @@
      inkscape:label="レイヤー 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-152.36218)">
+     transform="translate(0,-52.36218)">
     <g
        id="g3968-7-2"
        transform="matrix(0,0.66666668,-1,0,862.36218,639.02885)">
@@ -70,7 +70,7 @@
     </g>
     <g
        id="g4440"
-       transform="translate(375.71429,140.00001)">
+       transform="translate(367.14286,12.857153)">
       <g
          transform="translate(400,20.000003)"
          id="g3033">
@@ -409,7 +409,7 @@
            inkscape:connector-curvature="0" />
       </g>
       <g
-         transform="matrix(0,0.66666668,-1,0,1205.2193,801.886)"
+         transform="matrix(0,0.66666668,-1,0,1200.9336,839.02886)"
          id="g4119-3">
         <path
            inkscape:connector-curvature="0"
@@ -423,15 +423,14 @@
            style="fill:none;stroke:#000000;stroke-width:1.22474492px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
       </g>
       <text
-         transform="matrix(0.81649657,0,0,0.81649662,1082.3622,789.02885)"
          sodipodi:linespacing="125%"
          id="text4404"
-         y="98.56279"
-         x="-1649.3"
-         style="font-size:68.58570862px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Segoe UI;-inkscape-font-specification:Segoe UI"
+         y="906.64789"
+         x="-268.57135"
+         style="font-size:55.99999619px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Segoe UI;-inkscape-font-specification:Segoe UI"
          xml:space="preserve"><tspan
-           y="98.56279"
-           x="-1649.3"
+           y="906.64789"
+           x="-268.57135"
            id="tspan4406"
            sodipodi:role="line">(L:音長, f:音程周波数, N:割込み回数, A:振幅)</tspan></text>
       <path
@@ -654,7 +653,7 @@
            id="tspan4292"
            sodipodi:role="line">N</tspan></text>
       <g
-         transform="translate(80,0)"
+         transform="translate(75.714286,37.142857)"
          id="g4367">
         <text
            xml:space="preserve"
