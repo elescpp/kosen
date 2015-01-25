@@ -1,6 +1,25 @@
 ﻿\documentclass{jarticle}
 
 \usepackage{graphicx}
+\usepackage{listing,jlisting}
+\usepackage{ascmac}
+\usepackage{here}
+\usepackage{txfonts}
+\usepackage{listings, jlisting}
+\renewcommand{\lstlistingname}{リスト}
+\lstset{language=c,
+	basicstyle=\ttfamily\scriptsize,
+	commentstyle=\textit,
+	classoffset=1,
+	keywordstyle=\bfseries,
+	frame=tRBl,
+	framesep=5pt,
+	showstringspaces=false,
+	numbers=left,
+	stepnumber=1,
+	numberstyle=\tiny,
+	tabsize=2
+}
 
 \begin{document}
 
@@ -15,7 +34,7 @@ H8マイコンの割り込みについて理解を深め、割り込み制御を
 「UFOゲーム」では、図1のようにキャラクタを使ってゲームフィールドを表現する。フィールドは、「:」によって分けられた照準フィールドと戦闘フィールドの2つから構成される。
 
 
-照準フィールドには、敵を打ち落とすための数値が表示され、照準キーを押すたびに「...→0ー→1→2→...→8→9→n→0→...」のように順に変化する。戦闘フィールドには、フィールドの右側から左に向って敵が押し寄せてくる。押し寄せてくる速さは、ゲームが進行するにつれて徐々に速くなる。敵はインベーダを表す数字の0〜9と、UFOを示すnで表現されている。なお、インベーダは進行するたびに戦闘フィールドの右端に乱数で発生し、UFOは特定の条件下で発生する。
+照準フィールドには、敵を打ち落とすための数値が表示され、照準キーを押すたびに「...→0→1→2→...→8→9→n→0→...」のように順に変化する。戦闘フィールドには、フィールドの右側から左に向って敵が押し寄せてくる。押し寄せてくる速さは、ゲームが進行するにつれて徐々に速くなる。敵はインベーダを表す数字の0〜9と、UFOを示すnで表現されている。なお、インベーダは進行するたびに戦闘フィールドの右端に乱数で発生し、UFOは特定の条件下で発生する。
 
 
 敵の撃墜は、照準フィールドの値を敵を示す値と一致させて発射キーを押すことで行われるが、戦闘フィールドに複数の同じ値をもつ敵が存在する場合には最も照準フィールド寄りの敵1つのみが撃墜される。
@@ -56,6 +75,7 @@ H8マイコンの割り込みについて理解を深め、割り込み制御を
 
 
 \section{使用機器}
+使用機器を以下に示す。
 \begin{enumerate}
 \item H8マイコン
 \item USBケーブル
@@ -101,6 +121,30 @@ sound.cで宣言されている大域変数timer0\_countは割り込み回数を
 
 
 \section{実験結果}
+\subsection{課題1 キー読み込みの実装}
+key.hに宣言されている関数を実装することで、チャタリングを除去して、キーでゲームを操作することが可能になった。
+
+
+ソースファイルをリスト1に、Makefileをリスト2にそれぞれ示す。
+
+\subsection{課題2 効果音生成の実装}
+sound.hに宣言されている関数を実装することで、ボタン操作に応じて効果音がなるようになった。
+
+
+ソースファイルをリスト3に示す。Makefileは課題1のリスト2と同じである。
+
+\subsection{課題3 UFOゲームの発展}
+\subsubsection*{・課題3-1}
+課題の条件を満たすプログラムを作成し、実際に動作することを確認した。
+
+
+ソースファイルをリスト4に示す。Makefileは課題1のリスト2と同じである。
+
+\subsubsection*{・課題3-2}
+ステージが進むに連れて、敵の数は多くなり、余分な弾数が少なくなるようにした。敵または弾数が99以上の場合、表示は99のままで99未満になるとその数値が表示される仕様にした。表示中の「E:」は敵の残り、「B:」は残り弾数、そして「S:」は現在のステージを表す。
+
+
+ソースファイルをリスト5に示す。Makefileは課題1のリスト2と同じである。
 
 
 \section{検討課題}
@@ -109,45 +153,63 @@ ufo.cをよく読んで、どのようにして「今、キーが押された」
 
 
 1ループ前のキーの状態を保持し、現在のキーの状態と比較することにより実現されている。1ループ前に押されていない、かつ現在押されていればキーは今押されたことになる。
+
 \subsubsection*{・検討課題2}
 補足の図5キーマトリクス回路において、キースイッチと直列にダイオードが挿入されていないとどのような不具合が生ずるか、説明しなさい。
 
 
+読み取ろうとしている行のいずれかのキーを押した状態で、そのキーと同じ列のキーを1つ以上同時に押すと、5V端子とGNDが短絡された状態になり、大きな電流が流れるため危険になる。
 
 \subsubsection*{・検討課題3}
 sound.cで実装したような割り込み処理による効果音生成において、効果音の音程が高くなると、どのような悪影響が生じてくるかについて検討せよ。
 
+
+効果音のための割り込みの回数が多くなり、メインの処理、キーの処理に充てられる時間が減り、キーの取りこぼしが発生したり反応が遅くなったりして快適に遊べなくなる恐れが出てくる。
+
 \newpage
 
-\begin{figure}{}
+\begin{figure}[h]
 	\begin{center}
 		\includegraphics[width=10cm]{./figure1.eps}
 	\end{center}
 	\caption{UFOゲームのフィールド}
 \end{figure}
 
-\begin{figure}{}
+\begin{figure}[h]
 	\begin{center}
 		\includegraphics[width=10cm]{./figure2.eps}
 	\end{center}
 	\caption{チャタリング発生時のデータバッファの様子}
 \end{figure}
 
-\begin{figure}{}
+\begin{figure}[!h]
 	\begin{center}
 		\includegraphics[width=10cm]{./figure3.eps}
 	\end{center}
 	\caption{リングバッファの構成}
 \end{figure}
 
-\begin{figure}{}
+\begin{figure}[!h]
 	\begin{center}
 		\includegraphics[width=10cm]{./figure4.eps}
 	\end{center}
 	\caption{効果音の波形}
 \end{figure}
 
-\begin{figure}{}
+\newpage
+
+\lstinputlisting[caption=key.c]{../key.c}
+\lstinputlisting[caption=Makefile]{../make-ufo}
+\lstinputlisting[caption=sound.c]{../sound.c}
+
+\if0
+\lstinputlisting[caption=課題3-1のufo.c]{../ufo31.c}
+\lstinputlisting[caption=課題3-2のufo.c]{../ufo32.c}
+\fi
+
+\newpage
+
+\begin{figure}[h]
 	\begin{center}
 		\includegraphics[width=10cm]{./figure5.eps}
 	\end{center}
