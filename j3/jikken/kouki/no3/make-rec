@@ -1,15 +1,15 @@
-# H8/3052 の 雛型 Makefile
-#  手順1. 必要な設定を変更して、違うファイル名で保存する (例：make-test)
-#	  TARGET = , SOURCE_C = , SOURCE_ASM = を指定する
-#	  GDBリモートデバッキングのときは、REMOTE_DBG = true とする
-#	  その他は通常、変更の必要はない
-#  手順2. make -f makefile名 で make する (例：make -f make-test)
+# H8/3052 の 雛型 Makefile (2008.5.29 和崎)
+#   1. 必要な設定を変更して、違うファイル名で保存する (例：make-test)
+#	TARGET = , SOURCE_C = , SOURCE_ASM = を指定する
+#	GDBリモートデバッキングのときは、REMOTE_DBG = true とする
+#	その他は通常、変更の必要はない
+#   2. make -f makefile名 で make する (例：make -f make-test)
 
 # 生成するファイルとソースファイルの指定
 # 1. 生成するオブジェクトのファイル名を指定
-TARGET = key-sample.mot
+TARGET = rec.mot
 # 2. 生成に必要なCのファイル名を空白で区切って並べる
-SOURCE_C = key-sample.c
+SOURCE_C = rec.c lcd.c ad.c da.c timer.c
 # 3. 生成に必要なアセンブラのファイル名を空白で区切って並べる
 #	(スタートアップルーチンは除く)
 SOURCE_ASM = 
@@ -37,15 +37,33 @@ RAM_CAP = ext
 # 4. GDBによるデバッグを行うかどうかの指定 ※
 USE_GDB = true
 
+# 計算機環境依存項目の指定
+#	(使用する環境にあわせて変更、通常は変更の必要なし)
 #
-# パスの設定
+# 0. 計算機システムの指定
+#	jcomp：情報工学科計算機システム
+#	指定なし：以下のパスの設定に従う
+#		COMP_SYS = jcomp
+COMP_SYS = jcomp
 #
-CMD_PATH = /usr/local/bin
-LIB_PATH = /home/class/common/H8/lib
-
+# 1. クロス環境のバイナリが置かれているパスの指定
+#	回路システム実験室ではこちらのディレクトリ
+#		CMD_PATH = /usr/local/H8/bin
+#	デフォルト指定
+CMD_PATH = /usr/local/h8/bin
 #
-# クロスコンパイラ関係
+# 2. リンカスクリプト、スタートアップルーチン、その他ライブラリ
+#	デフォルト指定
+LIB_PATH = /home/wasaki/h8/standard-set/3052
 #
+# 情報工学科計算機システムの指定があるとき、パスは以下の設定になる
+ifeq ($(COMP_SYS), jcomp)
+	CMD_PATH = /usr/local/bin
+	LIB_PATH = /home/class/common/H8/lib
+endif
+#
+# 3. クロスコンパイラ関係
+#	デフォルト指定
 CC = $(CMD_PATH)/h8300-hms-gcc
 LD = $(CMD_PATH)/h8300-hms-ld
 OBJCOPY = $(CMD_PATH)/h8300-hms-objcopy
@@ -67,7 +85,7 @@ OUTPUT_FORMAT = -O srec --srec-forceS3
 # コンパイラオプション
 #
 # インクルードディレクトリの追加("*****.h"指定のみ有効)
-INCLUDES = -I/home/class/common/H8/include
+INCLUDES = -I./include
 # コンパイラオプションの指定
 #	-mh：H8/300Hシリーズ指定
 #	-mrelax：条件分岐コードの最適化
@@ -79,6 +97,7 @@ CFLAGS = -mh -mrelax -mint32 -O2 $(INCLUDES) -Wall
 #
 # 指定に合わせたスタートアップルーチンとリンカスクリプトの選択
 #
+
 ifeq ($(REMOTE_DBG), true)
 	USE_GDB = true
 	ON_RAM = ram

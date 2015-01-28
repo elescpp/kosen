@@ -10,9 +10,9 @@ Archive member included because of file (symbol)
 Allocating common symbols
 Common symbol       size              file
 
-play_mode           0x4               no3.o
-bufptr              0x4               no3.o
-databuf             0x7800            no3.o
+play_mode           0x4               rec.o
+bufptr              0x4               rec.o
+databuf             0x7800            rec.o
 
 Memory Configuration
 
@@ -23,7 +23,7 @@ ram              0x00200000         0x00020000
 Linker script and memory map
 
 LOAD /home/class/common/H8/lib/ramcrt-ext.o
-LOAD no3.o
+LOAD rec.o
 LOAD lcd.o
 LOAD ad.o
 LOAD da.o
@@ -60,7 +60,7 @@ LOAD /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/h8300h/int32/libgcc.a
                 0x00ffe054        0x4 LONG 0x200000 DEFINED (_int_cmi)?<code 340> (_int_cmi):<code 340> (_start)
                 0x00ffe058        0x4 LONG 0x200000 <code 340> (_start)
                 0x00ffe05c        0x4 LONG 0x200000 <code 340> (_start)
-                0x00ffe060        0x4 LONG 0x20019c DEFINED (_int_imia0)?<code 340> (_int_imia0):<code 340> (_start)
+                0x00ffe060        0x4 LONG 0x200118 DEFINED (_int_imia0)?<code 340> (_int_imia0):<code 340> (_start)
                 0x00ffe064        0x4 LONG 0x200000 DEFINED (_int_imib0)?<code 340> (_int_imib0):<code 340> (_start)
                 0x00ffe068        0x4 LONG 0x200000 DEFINED (_int_ovi0)?<code 340> (_int_ovi0):<code 340> (_start)
                 0x00ffe06c        0x4 LONG 0x200000 <code 340> (_start)
@@ -101,77 +101,77 @@ LOAD /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/h8300h/int32/libgcc.a
                 0x00ffe0f8        0x4 LONG 0x200000 <code 340> (_start)
                 0x00ffe0fc        0x4 LONG 0x200000 <code 340> (_start)
 
-.text           0x00200000      0x954
+.text           0x00200000      0x896
                 0x00200000                __text_start = .
  *(.text)
  .text          0x00200000       0x3c /home/class/common/H8/lib/ramcrt-ext.o
                                  0x70 (size before relaxing)
                 0x00200000                _start
- .text          0x0020003c      0x1f4 no3.o
-                                0x1f8 (size before relaxing)
-                0x002000ba                _menu
-                0x0020019c                _int_imia0
-                0x0020010e                _sample_replay
+ .text          0x0020003c      0x132 rec.o
+                                0x134 (size before relaxing)
+                0x00200074                _menu
+                0x00200118                _int_imia0
+                0x002000a2                _sample_replay
                 0x0020003c                _main
- .text          0x00200230      0x1aa lcd.o
+ .text          0x0020016e      0x1aa lcd.o
                                 0x1b2 (size before relaxing)
-                0x00200230                _lcd_init
-                0x002003b2                _wait1ms
-                0x00200326                _lcd_printstr
-                0x0020036a                _lcd_printch
-                0x002002bc                _lcd_cursor
-                0x0020030c                _lcd_clear
-                0x0020037a                _lcd_putch
- .text          0x002003da       0x42 ad.o
-                0x002003da                _ad_init
-                0x002003f6                _ad_start
- .text          0x0020041c       0x80 da.o
-                0x00200440                _da_out
-                0x0020047c                _speaker_switch
-                0x00200460                _da_stop
-                0x0020041c                _da_init
- .text          0x0020049c      0x338 timer.o
-                0x0020049c                _timer_set
-                0x0020076c                _timer_init
-                0x00200716                _timer_start
-                0x00200740                _timer_stop
-                0x0020078a                _timer_intflag_reset
- .text          0x002007d4       0x18 /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/h8300h/int32/libgcc.a(_mulsi3.o)
-                0x002007d4                ___mulsi3
- .text          0x002007ec       0xc4 /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/h8300h/int32/libgcc.a(_divsi3.o)
+                0x0020016e                _lcd_init
+                0x002002f0                _wait1ms
+                0x00200264                _lcd_printstr
+                0x002002a8                _lcd_printch
+                0x002001fa                _lcd_cursor
+                0x0020024a                _lcd_clear
+                0x002002b8                _lcd_putch
+ .text          0x00200318       0x42 ad.o
+                0x00200318                _ad_init
+                0x00200334                _ad_start
+ .text          0x0020035a       0x80 da.o
+                0x0020037e                _da_out
+                0x002003ba                _speaker_switch
+                0x0020039e                _da_stop
+                0x0020035a                _da_init
+ .text          0x002003da      0x338 timer.o
+                0x002003da                _timer_set
+                0x002006aa                _timer_init
+                0x00200654                _timer_start
+                0x0020067e                _timer_stop
+                0x002006c8                _timer_intflag_reset
+ .text          0x00200712       0x18 /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/h8300h/int32/libgcc.a(_mulsi3.o)
+                0x00200712                ___mulsi3
+ .text          0x0020072a       0xc4 /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/h8300h/int32/libgcc.a(_divsi3.o)
                                  0xc8 (size before relaxing)
-                0x00200838                ___umodsi3
-                0x0020084c                ___divsi3
-                0x00200812                ___modsi3
-                0x00200826                ___udivsi3
- .text          0x002008b0       0x3c /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/../../../../h8300-hms/lib/h8300h/int32/libg.a(lib_a-strlen.o)
-                0x002008b0                _strlen
+                0x00200776                ___umodsi3
+                0x0020078a                ___divsi3
+                0x00200750                ___modsi3
+                0x00200764                ___udivsi3
+ .text          0x002007ee       0x3c /home/local/bin/../lib/gcc-lib/h8300-hms/3.3.6/../../../../h8300-hms/lib/h8300h/int32/libg.a(lib_a-strlen.o)
+                0x002007ee                _strlen
  *(.rodata)
- .rodata        0x002008ec       0x40 no3.o
- .rodata        0x0020092c       0x28 timer.o
+ .rodata        0x0020082a       0x44 rec.o
+ .rodata        0x0020086e       0x28 timer.o
  *(.strings)
-                0x00200954                __text_end = .
+                0x00200896                __text_end = .
 
-.tors           0x00200954        0x0
-                0x00200954                ___ctors = .
+.tors           0x00200896        0x0
+                0x00200896                ___ctors = .
  *(.ctors)
-                0x00200954                ___ctors_end = .
-                0x00200954                ___dtors = .
+                0x00200896                ___ctors_end = .
+                0x00200896                ___dtors = .
  *(.dtors)
-                0x00200954                ___dtors_end = .
+                0x00200896                ___dtors_end = .
 
-.data           0x00200954        0x0
-                0x00200954                __data_start = .
+.data           0x00200896        0x0
+                0x00200896                __data_start = .
  *(.data)
-                0x00200954                __edata = .
+                0x00200896                __edata = .
 
-.bss            0x00200960     0x7810
-                0x00200960                __bss_start = .
+.bss            0x002008a0     0x7810
+                0x002008a0                __bss_start = .
  *(.bss)
  *(COMMON)
- COMMON         0x00200960     0x7810 no3.o
-                0x00200960                _play_mode
-                0x00200964                _bufptr
-                0x00200970                _databuf
-                0x00208170                __bss_end = .
-OUTPUT(no3.coff coff-h8300)
+ COMMON         0x002008a0     0x7810 rec.o
+                0x002008a0                _play_mode
+                0x002008a4                _bufptr
+                0x002008b0                _databuf
+                0x002080b0                __bss_end = .
+OUTPUT(rec.coff coff-h8300)

@@ -9,7 +9,7 @@
 # 1. 生成するオブジェクトのファイル名を指定
 TARGET = no4.mot
 # 2. 生成に必要なCのファイル名を空白で区切って並べる
-SOURCE_C = no4.c lcd.c
+SOURCE_C = no4.c lcd.c ad.c da.c timer.c
 # 3. 生成に必要なアセンブラのファイル名を空白で区切って並べる
 #	(スタートアップルーチンは除く)
 SOURCE_ASM = 

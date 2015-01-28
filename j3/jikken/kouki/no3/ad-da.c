@@ -70,7 +70,9 @@ unsigned char  menu(void)
 	/* キー入力取得のための変数を宣言する */
 	unsigned char cf, key_data;
 
-	lcd_cursor(0,0);
+	lcd_cursor(0,0);                   /* LCD にメッセージ表示 */
+	lcd_printstr("Rec:[*] Play:[#]");
+	lcd_cursor(0,1);
 	lcd_printstr(" Push * or # key");
 
 	/* キー入力判定用変数の初期化*/
@@ -78,15 +80,18 @@ unsigned char  menu(void)
 	key_data = 0;
 
 	while (cf == 0 ){  /* キー入力するまでループする */
-		//key 0
-		PADR = 0x0e;
-		cf = P6DR;
-		cf = ~cf;
-		cf &= 0x07;
-		switch(cf) {
-			case 1 : key_data = '*'; break;
-			case 4 : key_data = '#'; break;
-		}  
+    /* ここにキー入力の処理を記述する */
+    PADR = 0x0e;
+    cf = P6DR;
+    cf = ~cf;
+    cf &= 0x07;
+	  
+    /* ◎key 「*」,「#」のみの入力に対応させる処理を記述する */
+    //key *,0,#
+    switch(cf) {
+    case 1 : key_data = '*'; break;
+    case 4 : key_data = '#'; break;
+    }  
 	}
 
 	/* 入力されたキーの情報を返す */
@@ -97,29 +102,21 @@ void sample_replay(int mode)
 	/* 録音または再生を行う関数 */
 	/*   mode: PLAY, SAMPLE     */
 {
-	lcd_cursor(0, 1);
-	lcd_printstr("               ");
 	if (mode == PLAY){                    /* 再生モードの処理 */
 		/* ここにスピーカをスピーカとして使用する命令を記述する */
     speaker_switch(SPEAKER);
+		lcd_cursor(0,1);
+		lcd_printstr(" Now playing... ");
 	}
 	if (mode == SAMPLE){                  /* 録音モードの処理 */
 		/* ここにスピーカをマイクとして使用する命令を記述する   */
-    speaker_switch(MIC);
+		lcd_cursor(0,1);
+		lcd_printstr(" Now Sampling...");
 	}
 	bufptr = 0;               /* バッファポインタを初期化 */
 	timer_start(0);           /* サンプリングタイマ(チャネル0)のスタート */
 	ENINT();                  /* CPU割り込み許可 */
-
-	unsigned long temp;
-	while (bufptr < ((unsigned long)BUFSIZE * 1024)){
-		temp = bufptr;
-		lcd_cursor(temp/((BUFSIZE/5)*1024), 1);
-		lcd_printch(temp/((BUFSIZE/5)*1024) + 1 + '0');
-	}
-
-	lcd_cursor(0, 1);
-	lcd_printstr("               ");
+	while (bufptr < ((unsigned long)BUFSIZE * 1024));
 	/* バッファが一杯になるまで実行 */
 	speaker_switch(MIC);      /* スピーカーオフ */
 	timer_stop(0);            /* タイマのストップ */
