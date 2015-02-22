@@ -98,7 +98,6 @@ int key_check(int keynum)
 	/* チェック中の割り込みによるバッファ書き換え対策はバッファの大きさで対応 */
 {
 	int r;
-	int row, pos;
 
 	/* 最初にキー番号の範囲をチェックする */
 	if ((keynum < 1) || (keynum > KEYMAXNUM))
@@ -107,8 +106,8 @@ int key_check(int keynum)
 		/* ここでキー番号からキー列番号とデータのビット位置を求める */
 		/* キー列番号がわかると配列の参照ができる */
 		/* データのビット位置がわかれば、指定されたキーのON/OFFがわかる */
-		row = (keynum-1) / (KEYROWNUM-1);
-		pos = (keynum-1) % (KEYROWNUM-1);
+		int row = (keynum-1) / KEYCOLNUM;
+		int pos = (keynum-1) % KEYCOLNUM;
 
 		/* ここで宣言された長さ(KEYCHKCOUNT)分だけキーの状態を調べる */
 		/* 　・リングバッファのつなぎ目の処理を忘れないこと */
@@ -124,13 +123,13 @@ int key_check(int keynum)
 
 		int i;
 		for(i = 0; i < KEYCHKCOUNT-1; i++){
-			if((keybuf[(temp+i)%KEYBUFSIZE][row] & (1 << pos)) ^ 
-					(keybuf[(temp+i+1)%KEYBUFSIZE][row] & (1 << pos))){
+			if((keybuf[(temp+i)%KEYBUFSIZE][row] & (1 << pos)) ^ (keybuf[(temp+i+1)%KEYBUFSIZE][row] & (1 << pos))){
 				r = KEYTRANS;
 				break;
 			}
 		}
 	}
+
 	return r;
 }
 
