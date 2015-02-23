@@ -231,7 +231,7 @@ int game_start(void)
     }
     /* 敵が前進するタイミングのときの処理 */
     if (shift_flag == TRUE){          /* 前進フラグが立っているなら */
-      if (disp[2] != ' ') disp[1] = disp[2]; /* 侵略時のみ区切りに侵入 */
+      if(disp[2] != ' ') disp[1] = '@';
       for (i = 2; i < MAXINVNUM; i++)   /* 敵全体を左に1つシフト */
 	disp[i] = disp[i + 1];
       if (score % 10 == 1) nc = 'n';    /* スコアの最下位が1ならUFO出現 */
@@ -239,9 +239,25 @@ int game_start(void)
       disp[MAXINVNUM - 1] = nc;         /* 右端に新キャラを入れる */
       shift_flag = FALSE;               /* 前進フラグの消去 */
       lcd_cursor(0,1);                  /* フィールドの表示 */
-      lcd_printstr(disp);
+      
+      if( disp[1] != ':'){
+	disp[1] = ':';
+	stock--;
+	stock_disp[sizeof(stock_disp)-2]--; /*stock_disp[sizeof(stock_disp)-1] = stock + '0 is better form*/
+ 	if(stock < 0){
+	  gameover = TRUE;
+	  continue;
+	}
+	
+	lcd_cursor(0,0);
+	lcd_printstr(stock_disp);   
+      }
+
+      lcd_cursor(0, 1);
+      lcd_printstr(disp);	
     }
-    if (disp[1] != ':') gameover = TRUE; /* 侵略されたらゲームオーバ */
+    
+    
   }
   return score; /* 得点を返す */
 }
